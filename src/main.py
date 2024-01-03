@@ -1,4 +1,6 @@
 from object_3d import *
+from camera import *
+from projection import *
 import pygame as pg
 
 
@@ -14,10 +16,15 @@ class SoftwareRender:
         self.create_objects()
         
     def create_objects(self):
+        self.camera = Camera(self, [0.5, 1, -4])
+        self.projection = Projection(self)
         self.object = Object3D(self)
+        self.object.translate([0.2, 0.4, 0.2])
+        self.object.rotate_y(math.pi / 6)
         
     def draw(self):
         self.screen.fill(pg.Color('darkslategray'))
+        self.object.draw()
         
     def run(self):
         while True:
